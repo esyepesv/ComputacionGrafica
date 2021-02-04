@@ -37,15 +37,54 @@ public class EventoMouse
       g2d.setColor(Color.BLUE);
     //g2d.draw(linea1);
     
+    // Reto semana 2 - Segmentos de recta
+
      int x1 = (int) linea1.x1;
      int y1 = (int) linea1.y1;
      int x2 = (int) linea1.x2;
      int y2 = (int) linea1.y2;
      
-     g2d.drawLine(x1, y1, x2, y2);
-     // prueva
-      
+     // algoritmo tomado de: https://rosettacode.org/wiki/Bitmap/Bresenham%27s_line_algorithm#Java
 
+     int d = 0;
+ 
+        int dx = Math.abs(x2 - x1);
+        int dy = Math.abs(y2 - y1);
+ 
+        int dx2 = 2 * dx;
+        int dy2 = 2 * dy; 
+ 
+        int ix = x1 < x2 ? 1 : -1; 
+        int iy = y1 < y2 ? 1 : -1;
+ 
+        int x = x1;
+        int y = y1;
+ 
+        if (dx >= dy) {
+            while (true) {
+              g2d.drawLine(x1, y1, x2, y2);
+                if (x == x2)
+                    break;
+                x += ix;
+                d += dy2;
+                if (d > dx) {
+                    y += iy;
+                    d -= dx2;
+                }
+            }
+        } else {
+            while (true) {
+              g2d.drawLine(x1, y1, x2, y2);
+                if (y == y2)
+                    break;
+                y += iy;
+                d += dx2;
+                if (d > dy) {
+                    x += ix;
+                    d -= dy2;
+                }
+            }
+        }
   }
   
     @Override 
