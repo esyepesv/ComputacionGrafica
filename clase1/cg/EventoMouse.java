@@ -43,6 +43,7 @@ public class EventoMouse
      int y2 = (int) linea1.y2;
      
      g2d.drawLine(x1, y1, x2, y2);
+     // prueva
       
 
   }
